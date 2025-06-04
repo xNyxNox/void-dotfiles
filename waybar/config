@@ -1,0 +1,92 @@
+{
+    "layer": "top",
+    "position": "left",
+    "width": 46,
+    "spacing": 4,
+    "modules-left": ["custom/launcher", "niri/workspaces"],
+    "modules-center": ["custom/music"],
+    "modules-right": ["pulseaudio", "network", "tray", "battery", "clock"],
+    "niri/workspaces": {
+         "format": "{icon}",
+         "format-icons": {
+                "default": ""
+
+         }
+     },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10,
+        "show-passive-items": true
+    },
+    "custom/launcher":{
+        "format": "",
+        "on-click": "fuzzel --config ~/.config/fuzzel/launcher.ini || pkill fuzzel",
+        "on-click-right": "pkill fuzzel",
+        "tooltip": false
+    },
+    "custom/music": {
+        "format": " \n  ",
+        "escape": true,
+        "interval": 5,
+        "tooltip": false,
+        "on-click": "playerctl play-pause",
+    },
+    "clock": {
+        "timezone": "US/Eastern",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%d\n%m\n%y}",
+        "format": "{:%H\n%M}"
+    },
+    "backlight": {
+        "device": "amdgpu_bl1",
+        "format": "{icon}\n{percent}%",
+        "format-alt": "{icon}",
+        "tooltip": false,
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": " {icon}\n{capacity}%",
+        "format-charging": " 󰂄\n{capacity}%",
+        "format-plugged": " \n{capacity}%",
+        "format-alt": "{icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "pulseaudio": {
+	// "scroll-step": 1, // %, can be a float
+        "format": " {icon}\n{volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+    "custom/lock": {
+        "tooltip": false,
+        "on-click": "swaylock &",
+        "format": " "
+    },
+    "custom/power": {
+        "tooltip": false,
+        "on-click": "wlogout &",
+        "format": "⏻ "
+    },
+    "niri/language": {
+        "format": "{short}"
+    },
+    "network": {
+        "interface": "wlp1s0f0",
+        "format": "{ifname}",
+        "format-disconnected": "",
+        "format-wifi": " ",
+        //"format-alt": "{essid}",
+        "tooltip-format": "{signalStrength}%",
+        "tooltip-format-wifi": "{essid} {signalStrength}%",
+        "tooltip-format-disconnected": "No Connection"
+    }
+}

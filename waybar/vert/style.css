@@ -1,0 +1,168 @@
+* {
+  border: none;
+  /*border-radius: 10px;*/
+  font-family: "JetbrainsMono Nerd Font";
+  font-size: 15px;
+  min-width: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+window#waybar {
+  background: #131020;
+}
+
+#waybar {
+  background-color: #131020;
+  padding: 0;
+}
+
+#network {
+  margin: 4px;
+  padding: 8px 4px;
+  /*background: #292c3c;*/
+  color: #bd93f9;
+  transition: 0.3s;
+  min-height: 40px;
+}
+
+#network:hover {
+  color: #292c3c;
+  background: #bd93f9;
+}
+
+#battery {
+  margin: 4px;
+  padding: 8px 4px;
+  /*background: #292c3c;*/
+  color: #bd93f9;
+  transition: 0.3s;
+  min-height: 40px;
+}
+
+#battery:hover {
+  color: #292c3c;
+  background: #bd93f9;
+}
+
+#pulseaudio {
+  margin: 4px;
+  padding: 8px 4px;
+  /*background: #292c3c;*/
+  color: #bd93f9;
+  transition: 0.3s;
+  min-height: 40px;
+}
+
+#pulseaudio:hover {
+  background: #bd93f9;
+  color: #292c3c;
+}
+
+#pulseaudio.muted {
+  color: #f38ba8;
+  background: #292c3c;
+}
+
+#pulseaudio.muted:hover {
+  background: #f38ba8;
+  color: #292c3c;
+}
+
+#clock {
+  margin: 4px;
+  padding: 8px 4px;
+  /*background: #292c3c;*/
+  color: #bd93f9;
+  transition: 0.3s;
+  min-height: 40px;
+}
+
+#clock:hover {
+  color: #292c3c;
+  background: #bd93f9;
+}
+
+#custom-launcher {
+  font-size: 20px;
+  margin: 4px;
+  padding: 8px 4px;
+  color: #bd93f9;
+  /*background: #292c3c;*/
+  transition: 0.3s;
+}
+
+#custom-launcher:hover {
+  background: #bd93f9;
+  color: #292c3c;
+}
+
+#network.disconnected {
+  color: #f38ba8;
+  /*background: #292c3c;*/
+}
+
+#network.disconnected:hover {
+  background: #f38ba8;
+  color: #292c3c;
+}
+
+#custom-music {
+  margin: 4px;
+  padding: 8px 4px;
+  /*background: #292c3c;*/
+  color: #bd93f9;
+  transition: 0.3s;
+  min-height: 20px;
+  font-size: 14px;
+}
+
+#custom-music:hover {
+  color: #292c3c;
+  background: #bd93f9;
+}
+
+#workspaces {
+  margin: 0px;
+  /*background: #292c3c;*/
+  color: #bd93f9;
+  transition: 0.3s;
+  min-height: 60px;
+  padding: 4px 0;
+  opacity: 1;
+}
+
+#workspaces button {
+  color: #bd93f9;
+  padding: 2px 4px;
+  margin: 2px 0;
+  transition: 0.3s;
+  font-size: 14px;
+  /*background: #292c3c;*/
+}
+
+#workspaces button:hover {
+  background: #292c3c;
+  color: #ffffff;
+}
+
+#workspaces button.active {
+  color: #94e2d5;
+  background: #292c3c;
+}
+
+#tray {
+  margin: 4px;
+  padding: 8px 4px;
+ /* background: #292c3c;*/
+  color: #bd93f9;
+  transition: 0.3s;
+  min-height: 40px;
+}
+
+#tray menu {
+  margin: 4px;
+  padding: 8px 4px;
+  background: #292c3c;
+  color: #bd93f9;
+}

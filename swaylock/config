@@ -1,0 +1,5 @@
+daemonize
+image=~/.config/swaylock/black_hole_everforest.png
+scaling=fill
+font="SpaceMono Nerdfont Mono"
+

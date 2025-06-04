@@ -1,0 +1,263 @@
+// If something is not in here, check the version with comments
+
+input {
+	keyboard {
+		xkb {
+			//options here
+		}
+	}
+
+	touchpad {
+		tap
+		dwt
+		natural-scroll
+	}
+
+	mouse {
+		accel-profile "flat"
+	}
+
+	warp-mouse-to-focus
+	focus-follows-mouse max-scroll-amount="40%"
+}
+
+output "DP-1" {
+	mode "1920x1080@165"
+	scale 1.0
+	transform "normal"
+	position x=0 y=0
+	variable-refresh-rate on-demand=true
+}
+output "HDMI-A-1" {
+	mode "1600x900@74.889"
+	scale 1.0
+	transform "normal"
+	position x=1920 y=300
+}
+layout {
+	gaps 10
+	center-focused-column "never"
+	preset-column-widths {
+		proportion 0.33333
+		proportion 0.5
+		proportion 0.66667
+	}
+	default-column-width { proportion 0.5; }
+	focus-ring {
+		off
+		width 1
+		active-color "#83C092"
+		inactive-color "#A7C080"
+		//active-gradient from="#c4a7e7" to="#eb6f92" angle=45 relative-to="workspace-view"
+		//inactive-gradient from="#908caa" to="#ebbcba" angle=45 relative-to="workspace-view"
+	}
+	border {
+		off
+		width 4
+		active-color "#83C092"
+		inactive-color "#A7C080"
+		//can also use gradients like above focus ring
+	}
+	shadow {
+		on
+		draw-behind-window false
+		softness 30
+		spread 5
+		offset x=0 y=5
+		color "#0007"
+	}
+	struts {
+		//struts are like gaps but on the outside of the screen
+		left 32
+		right 32
+		//top 32
+		//bottom 32
+	}
+}
+
+//startup rules
+hotkey-overlay {
+	skip-at-startup
+}
+spawn-at-startup "swww-daemon"
+spawn-at-startup "xwayland-satellite" ":10"
+spawn-at-startup "~/.config/waybar/launch.sh"
+spawn-at-startup "swaync"
+spawn-at-startup "~/.config/niri/launch-dbus.sh"
+spawn-at-startup "~/.config/niri/arrpc.sh"
+spawn-at-startup "pipewire"
+spawn-at-startup "wireplumber"
+spawn-at-startup "pipewire-pulse"
+
+
+//define things to happen at particular events
+switch-events {
+//lock screen with swaylock when lid close (laptop only)
+	lid-close { spawn "swaylock"; }
+}
+//environment variables
+environment {
+	//allows xwayland windows to open in xwayland-satellite without
+	//passing environment variables to each application
+	DISPLAY ":10"
+	//suggests electron applications to open in native wayland windows
+	ELECTRON_OZONE_PLATFORM_HINT "wayland"
+	ELECTRON_ENABLE_WAYLAND "1"
+	GDK_BACKEND "wayland"
+	XDG_DATA_DIRS "/home/trent/.nix-profile/share:/home/trent/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
+}
+
+//disable client-side-decorations
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+animations {
+	//off
+	//slowdown 3.0
+}
+
+//set cursor theme in non-gtk apps
+cursor {
+	xcursor-theme "Breeze_Snow"
+	xcursor-size 28
+}
+
+//window rules are honestly really complicated, check documentation before making more
+window-rule {
+	geometry-corner-radius 14
+	clip-to-geometry true
+}
+window-rule {
+	match is-focused=true
+	opacity 0.9
+}
+window-rule {
+	match is-focused=false
+	opacity 0.8
+}
+window-rule {
+	match app-id=r#"zen"#
+	opacity 1.0
+}
+window-rule {
+	match app-id=r#"zen"# title="^Picture-in-Picture$"
+	open-floating true
+	opacity 1.0
+}
+window-rule {
+	match app-id=r#"Firefox"#
+	opacity 1.0
+}
+
+binds {
+	//binds to open apps
+	Mod+Q { close-window; }
+	Mod+Shift+Slash { show-hotkey-overlay; }
+	Mod+Return { spawn "foot"; }
+	Mod+Space { spawn "fuzzel"; }
+	Mod+A { spawn "firefox"; }
+	Mod+G { spawn "niri_fuzzel_switcher"; }
+	Mod+T { spawn "nautilus"; }
+	Mod+Shift+L { spawn "swaylock"; }
+
+	XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    	XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    	XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    	XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+	//focus windows
+	Mod+Left  { focus-column-left; }
+    	Mod+Right { focus-column-right; }
+	//Mod+Down    { focus-window-down; }
+    	//Mod+Up     { focus-window-up; }
+		
+	//focus monitors
+	Mod+Shift+Left { focus-monitor-left; }
+	Mod+Shift+Right { focus-monitor-right; }
+
+	//focus both windows and workspaces
+	Mod+Down    { focus-window-or-workspace-down; }
+    	Mod+Up     { focus-window-or-workspace-up; }
+
+	//move windows
+	Mod+Ctrl+Left { move-column-left; }
+	Mod+Ctrl+Right { move-column-right; }
+    	Mod+Ctrl+Down    { move-window-down-or-to-workspace-down; }
+    	Mod+Ctrl+Up  { move-window-up-or-to-workspace-up; }
+
+	//move columns between monitors
+
+   	Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+   	Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+   	Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+   	Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+
+	//mouse navigation
+	Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    	Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    	Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    	Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    	Mod+WheelScrollRight      { focus-column-right; }
+    	Mod+WheelScrollLeft       { focus-column-left; }
+    	Mod+Ctrl+WheelScrollRight { move-column-right; }
+    	Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+	Mod+Shift+WheelScrollDown      { focus-column-right; }
+    	Mod+Shift+WheelScrollUp        { focus-column-left; }
+    	Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    	Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+	//keyboard workspace switching
+	Mod+1 { focus-workspace 1; }
+    	Mod+2 { focus-workspace 2; }
+    	Mod+3 { focus-workspace 3; }
+	Mod+4 { focus-workspace 4; }
+    	Mod+5 { focus-workspace 5; }
+    	Mod+6 { focus-workspace 6; }
+    	Mod+7 { focus-workspace 7; }
+    	Mod+8 { focus-workspace 8; }
+    	Mod+9 { focus-workspace 9; }
+    	Mod+Ctrl+1 { move-column-to-workspace 1; }
+    	Mod+Ctrl+2 { move-column-to-workspace 2; }
+    	Mod+Ctrl+3 { move-column-to-workspace 3; }
+    	Mod+Ctrl+4 { move-column-to-workspace 4; }
+    	Mod+Ctrl+5 { move-column-to-workspace 5; }
+    	Mod+Ctrl+6 { move-column-to-workspace 6; }
+    	Mod+Ctrl+7 { move-column-to-workspace 7; }
+    	Mod+Ctrl+8 { move-column-to-workspace 8; }
+    	Mod+Ctrl+9 { move-column-to-workspace 9; }
+
+	Mod+Tab { focus-workspace-previous; }
+
+	//column manipulaton
+
+	Mod+BracketLeft  { consume-or-expel-window-left; }
+    	Mod+BracketRight { consume-or-expel-window-right; }
+    	Mod+Comma  { consume-window-into-column; }
+    	Mod+Period { expel-window-from-column; }
+    	Mod+R { switch-preset-column-width; }
+    	Mod+Shift+R { switch-preset-window-height; }
+    	Mod+Ctrl+R { reset-window-height; }
+    	Mod+F { maximize-column; }
+    	Mod+Shift+F { fullscreen-window; }
+
+   	Mod+Ctrl+F { expand-column-to-available-width; }
+    	Mod+C { center-column; }
+    	Mod+Minus { set-column-width "-10%"; }
+    	Mod+Equal { set-column-width "+10%"; }
+    	Mod+Shift+Minus { set-window-height "-10%"; }
+    	Mod+Shift+Equal { set-window-height "+10%"; }
+    	Mod+V       { toggle-window-floating; }
+    	Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    	Mod+W { toggle-column-tabbed-display; }
+
+	//screenshot!
+    	Mod+Shift+S { screenshot; }
+
+	//this allows niri to take back control from remote desktop clients and KVMs
+	Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+	//woohoo
+    	Mod+Shift+E { quit; }
+    	Mod+Shift+P { power-off-monitors; }
+}
+
