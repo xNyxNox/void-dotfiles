@@ -158,7 +158,7 @@ binds {
 	Mod+Space { spawn "fuzzel"; }
 	Mod+A { spawn "firefox"; }
 	Mod+G { spawn "niri_fuzzel_switcher"; }
-	Mod+T { spawn "nautilus"; }
+	Mod+T { spawn "nautilus" "--new-window"; }
 	Mod+Shift+L { spawn "swaylock"; }
 
 	XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }

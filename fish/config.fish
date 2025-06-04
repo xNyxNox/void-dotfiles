@@ -6,6 +6,9 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# Load local secrets or machine-specific config
+test -f ~/.config/fish/local.fish; and source ~/.config/fish/local.fish
+
 
 # Everything here is to make nixpkgs work
 if test -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
@@ -32,3 +35,12 @@ alias vim="nvim"
 
 # Path
 set -U fish_user_paths $fish_user_paths /home/trent/.cargo/bin /home/trent/Documents/scripts
+
+# git setup
+if test -f "$GIT_SSH_KEY_PATH"
+    keychain --quiet $GIT_SSH_KEY_PATH
+    source ~/.keychain/(hostname)-fish ^/dev/null
+end
+
+# zoxide my beloved
+zoxide init fish | source

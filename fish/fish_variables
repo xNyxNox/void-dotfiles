@@ -1,5 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export SSH_AGENT_PID:17398
+SETUVAR --export SSH_AUTH_SOCK:/tmp/ssh\x2dXXXXXXlVG7rz/agent\x2e17397
 SETUVAR --export XDG_DATA_DIRS:/home/trent/\x2enix\x2dprofile/share\x3a/home/trent/\x2enix\x2dprofile/share\x3a/home/trent/\x2elocal/share/flatpak/exports/share\x3a/var/lib/flatpak/exports/share\x3a/usr/local/share\x3a/usr/share
 SETUVAR __fish_initialized:3800
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
