@@ -20,7 +20,7 @@
     },
     "custom/launcher":{
         "format": "",
-        "on-click": "fuzzel --config ~/.config/fuzzel/launcher.ini || pkill fuzzel",
+        "on-click": "fuzzel || pkill fuzzel",
         "on-click-right": "pkill fuzzel",
         "tooltip": false
     },
@@ -80,8 +80,8 @@
         "format": "{short}"
     },
     "network": {
-        "interface": "wlp1s0f0",
-        "format": "{ifname}",
+        "interface": "enp0s31f6",
+        "format": "󰈀",
         "format-disconnected": "",
         "format-wifi": " ",
         //"format-alt": "{essid}",
