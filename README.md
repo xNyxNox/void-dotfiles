@@ -11,14 +11,15 @@ Everforest theme
 [![alt-text](screenshots/apps.png)](screenshots/apps.png)
 
 ## Programs
-niri
-foot
-fish
-fuzzel
-waybar
-swww
-swaylock
-swaync
-obsidian theme: everforest
-discord theme: system24 everforest
-spotify_player
+- niri  
+- foot  
+- fish  
+- fuzzel  
+- waybar  
+- swww  
+- swaylock  
+- swaync  
+- obsidian theme: everforest  
+- discord theme: system24 everforest  
+- spotify_player
+

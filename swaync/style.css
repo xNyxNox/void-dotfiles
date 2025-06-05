@@ -11,9 +11,9 @@
 
 .floating-notifications.background .notification-row .notification-background {
   border-radius: 0.5rem;
-  background-color: #191724;
-  color: #e0def4;
-  border: 1px solid #6e6a86;
+  background-color: #1E2326;
+  color: #D3C6AA;
+  border: 1px solid #4F5B58;
 }
 
 .floating-notifications.background
@@ -38,7 +38,7 @@
   .notification-content
   .summary {
   margin: 0.5rem;
-  color: #e0def4;
+  color: #D3C6AA;
   font-weight: bold;
 }
 
@@ -49,7 +49,7 @@
   .notification-content
   .body {
   margin: 0.5rem;
-  color: #908caa;
+  color: #A7C080;
 }
 
 .floating-notifications.background
@@ -69,9 +69,9 @@
   > *
   .notification-action {
   border-radius: 0.5rem;
-  color: #e0def4;
-  background-color: #1f1d2e;
-  border: 1px solid #6e6a86;
+  color: #D3C6AA;
+  background-color: #2E383C;
+  border: 1px solid #93C092;
 }
 
 .floating-notifications.background
@@ -81,7 +81,7 @@
   > *:last-child
   > *
   .notification-action:hover {
-  background-color: #26233a;
+  background-color: #272E33;
 }
 
 .floating-notifications.background
@@ -91,7 +91,7 @@
   > *:last-child
   > *
   .notification-action:active {
-  background-color: #6e6a86;
+  background-color: #2E383C;
 }
 
 .floating-notifications.background
@@ -101,8 +101,8 @@
   margin: 0.5rem;
   padding: 0.25rem;
   border-radius: 0.5rem;
-  color: #e0def4;
-  background-color: #eb6f92;
+  color: #D3C6AA;
+  background-color: #4C3743;
 }
 
 .floating-notifications.background
